@@ -14,6 +14,9 @@ TARGET_CPU_ABI := armeabi
 TARGET_BOOTLOADER_BOARD_NAME := swift
 
 
+# Copy Kernel Headers here if necessary, DON'T use Adroid auto-generated headers
+TARGET_SPECIFIC_HEADER_PATH := device/lge/msm7x27-common/include
+
 # QCOM Hardware
 BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QCOM_LIBS := true
