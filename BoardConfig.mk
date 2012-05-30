@@ -27,7 +27,7 @@ TARGET_USES_C2D_COMPOSITION := false
 TARGET_USES_GENLOCK := true
 TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
 BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
-BOARD_EGL_CFG := device/lge/swift/configs/egl.cfg
+BOARD_EGL_CFG := device/lge/swift/files/egl.cfg
 BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
 
 COMMON_GLOBAL_CFLAGS += -DTARGET_MSM7x27 -DQCOM_HARDWARE
@@ -38,8 +38,6 @@ BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 
 TARGET_OTA_ASSERT_DEVICE := swift
-
-
 BOARD_KERNEL_CMDLINE := mem=210M console=null androidboot.hardware=qcom
 BOARD_KERNEL_BASE := 0x12e00000
 BOARD_PAGE_SIZE := 0x00000800
@@ -64,8 +62,6 @@ HTTP := chrome
 WITH_JIT := true
 ENABLE_JSC_JIT := true
 
-### enable audio
-TARGET_PROVIDES_LIBAUDIO := true
 ### enable ril
 TARGET_PROVIDES_LIBRIL := true
 

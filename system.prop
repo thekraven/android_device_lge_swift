@@ -2,6 +2,29 @@
 # system.prop for swift
 #
 
+####ICS CHANGES ###
+ro.product.camera=msm7x27 
+debug.camcorder.disablemeta=1 
+com.qc.hardware=true 
+com.qc.hdmi_out=false 
+debug.sf.hw=1 
+debug.enabletr=false 
+debug.composition.type=mdp 
+debug.gr.numframebuffers=2 
+debug.qctwa.statusbar=1 
+debug.qctwa.preservebuf=1 
+hwui.render_dirty_regions=false 
+hwui.disable_vsync=true 
+hwui.print_config=choice 
+persist.sys.strictmode.visual=false
+media.stagefright.enable-player=true 
+media.stagefright.enable-meta=false 
+media.stagefright.enable-scan=false 
+media.stagefright.enable-http=true 
+media.stagefright.enable-aac=true 
+media.stagefright.enable-qcp=true
+####ICS CHANGES ###
+
 rild.libpath=/system/lib/libril-qc-1.so
 rild.libargs=-d /dev/smd0
 persist.rild.nitz_plmn=

@@ -11,29 +11,43 @@ DEVICE_PACKAGE_OVERLAYS += device/lge/swift/overlay
 PRODUCT_PACKAGES += \
  hwprops \
  lights.swift \
- copybit.swift \
- gralloc.swift \
  gps.swift \
  sensors.swift \
- libmm-omxcore \
- libOmxCore \
  liblgdrm \
  liblgeat \
  liblgerft \
  brcm_patchram_plus \
  bdaddr_read \
- FM \
- SwiftParts
-
-# ICS Audio
-PRODUCT_PACKAGES += \
-    audio_policy.swift \
-    audio.primary.swift
 
 # ICS Camera
 PRODUCT_PACKAGES += \
     camera.swift
 
+# Audio
+PRODUCT_PACKAGES += \
+    audio_policy.swift \
+    audio.primary.swift \
+    audio.a2dp.default \
+    libaudioutils
+
+# Display
+PRODUCT_PACKAGES += \
+    libgenlock \
+    libmemalloc \
+    liboverlay \
+    libQcomUI \
+    libtilerenderer \
+    libopencorehw \
+    gralloc.msm7x27 \
+    copybit.msm7x27 \
+    hwcomposer.msm7x27
+
+# Media
+PRODUCT_PACKAGES += \
+    libstagefrighthw \
+    libmm-omxcore \
+    libOmxCore \
+    libdivxdrmdecrypt
 
 # Extra apps
 PRODUCT_PACKAGES += \
@@ -61,7 +75,6 @@ PRODUCT_PACKAGES += \
 # Publish that we support the live wallpaper feature.
 PRODUCT_COPY_FILES += \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
-
 
 
 PRODUCT_COPY_FILES += \
@@ -100,15 +113,9 @@ PRODUCT_COPY_FILES += \
    device/lge/swift/proprietary/lib/libdll.so:system/lib/libdll.so \
    device/lge/swift/proprietary/lib/libril-qc-1.so:system/lib/libril-qc-1.so \
    device/lge/swift/proprietary/lib/libril-qcril-hook-oem.so:system/lib/libril-qcril-hook-oem.so\
-   device/lge/swift/proprietary/lib/libril_log.so:system/lib/libril_log.so
-
-## LG RIL DRM Files have been replaced with source stud
-# 
+   device/lge/swift/proprietary/lib/libril_log.so:system/lib/libril_log.so 
 
 PRODUCT_COPY_FILES += \
-#   device/lge/swift/proprietary/lib/liblgdrm.so:system/lib/liblgdrm.so \
-#   device/lge/swift/proprietary/lib/liblgeat.so:system/lib/liblgeat.so \
-#   device/lge/swift/proprietary/lib/liblgerft.so:system/lib/liblgerft.so \
    device/lge/swift/proprietary/lib/libbcmwl.so:system/lib/libbcmwl.so
 
 
@@ -121,7 +128,7 @@ PRODUCT_COPY_FILES += \
 	device/lge/swift/proprietary/lib/gps/libloc-rpc.so:system/lib/libloc-rpc.so \
 	device/lge/swift/proprietary/lib/gps/libloc.so:system/lib/libloc.so \
 	device/lge/swift/proprietary/lib/gps/libloc.so:obj/lib/libloc.so
-#	device/lg/swift/proprietary/lib/gps/librpc.so:system/lib/librpc.so 
+
 
 # OMX proprietaries
 PRODUCT_COPY_FILES += \
@@ -162,14 +169,6 @@ PRODUCT_COPY_FILES += \
 # Other libraries and proprietary binaries
 PRODUCT_COPY_FILES += \
   device/lge/swift/proprietary/bin/akmd2:system/bin/akmd2 \
-#    vendor/lge/swift/proprietary/bin/hci_qcomm_init:system/bin/hci_qcomm_init \
-#    device/lge/swift/prebuilt/init.qcom.bt.sh:system/bin/init.qcom.bt.sh \
-#    device/lge/swift/ms3c_charger_offset.cfg:system/etc/ms3c_charger_offset.cfg \
-#    device/lge/swift/ms3c_transformation.cfg:system/etc/ms3c_transformation.cfg \
-#    device/lge/swift/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
-#    device/lge/swift/AudioFilter.csv:system/etc/AudioFilter.csv \
-#    vendor/lge/swift/proprietary/lib/liba2dp.so:system/lib/liba2dp.so \
-#    vendor/lge/swift/proprietary/lib/libaudioeq.so:system/lib/libaudioeq.so \
 
 
 #Adreno proprietary
