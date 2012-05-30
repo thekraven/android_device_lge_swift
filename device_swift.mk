@@ -30,6 +30,10 @@ PRODUCT_PACKAGES += \
     audio_policy.swift \
     audio.primary.swift
 
+# ICS Camera
+PRODUCT_PACKAGES += \
+    camera.swift
+
 
 # Extra apps
 PRODUCT_PACKAGES += \
