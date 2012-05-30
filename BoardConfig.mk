@@ -12,57 +12,75 @@ TARGET_ARCH_VARIANT := armv6-vfp
 TARGET_BOARD_PLATFORM := msm7k
 TARGET_CPU_ABI := armeabi
 TARGET_BOOTLOADER_BOARD_NAME := swift
-### enable 3d
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
-BOARD_EGL_CFG := device/lge/swift/files/egl.cfg
+
+
+# QCOM Hardware
+BOARD_USES_QCOM_HARDWARE := true
+BOARD_USES_QCOM_LIBS := true
+
+# Enable OpenGL Hardware Acceleration
+# msm7x27: no support for overlay, bypass, or c2d
+USE_OPENGL_RENDERER := true
+TARGET_USE_OVERLAY := false
+TARGET_HAVE_BYPASS := false
+TARGET_USES_C2D_COMPOSITION := false
+TARGET_USES_GENLOCK := true
+TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
+BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
+BOARD_EGL_CFG := device/lge/swift/configs/egl.cfg
+BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
+
+COMMON_GLOBAL_CFLAGS += -DTARGET_MSM7x27 -DQCOM_HARDWARE
+COMMON_GLOBAL_CFLAGS += -DMISSING_GRALLOC_BUFFERS -DREFRESH_RATE=60
+
+# Touch screen compatibility for ICS
+BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 
 TARGET_OTA_ASSERT_DEVICE := swift
 
-#need fix
 
 BOARD_KERNEL_CMDLINE := mem=210M console=null androidboot.hardware=qcom
 BOARD_KERNEL_BASE := 0x12e00000
 BOARD_PAGE_SIZE := 0x00000800
 
-#need fix
-
-#now I not use it
+# Now I not use it
 # 5mb all
 BOARD_BOOTIMAGE_PARTITION_SIZE := 5242880
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 5242880
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5242880
 
 
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 140800704
-
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 TARGET_PREBUILT_KERNEL := device/lge/swift/kernel
 
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/lge/swift/recovery_ui.c
-### enable 2d 
-BOARD_NO_RGBX_8888 := true
-TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
 
+
+# Enable JIT
 JS_ENGINE := v8
+HTTP := chrome
+WITH_JIT := true
+ENABLE_JSC_JIT := true
 
 ### enable audio
 TARGET_PROVIDES_LIBAUDIO := true
 ### enable ril
 TARGET_PROVIDES_LIBRIL := true
 
-### enable wifi
-# VER_0_6_X does not search networks
-WPA_SUPPLICANT_VERSION := VER_0_5_X
+# Wireless
 BOARD_WLAN_DEVICE := bcm4325
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wireless.ko"
-WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/wl/rtecdc.bin nvram_path=/system/etc/wl/nvram.txt"
-WIFI_DRIVER_MODULE_NAME := wireless
 WIFI_DRIVER_FW_STA_PATH := "/system/etc/wl/rtecdc.bin"
 WIFI_DRIVER_FW_AP_PATH := "/system/etc/wl/rtecdc-apsta.bin"
+WIFI_DRIVER_MODULE_NAME := "wireless"
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wireless.ko"
+WIFI_DRIVER_MODULE_ARG := "firmware_path=/etc/wl/rtecdc.bin nvram_path=/etc/wl/nvram.txt config_path=/data/misc/wifi/config"
+WPA_SUPPLICANT_VERSION := VER_0_6_X
+HOSTAPD_VERSION := VER_0_6_X
 WIFI_DRIVER_HAS_LGE_SOFTAP := true
-BOARD_WPA_SUPPLICANT_DRIVER:=WEXT
+BOARD_WEXT_NO_COMBO_SCAN := true
+BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 
 ### enable sensors
 TARGET_USES_OLD_LIBSENSORS_HAL:=true
@@ -77,21 +95,15 @@ TARGET_OVERLAY_ALWAYS_DETERMINES_FORMAT := true
 TARGET_SF_NEEDS_REAL_DIMENSIONS := true
 
 
-
 ### Enable GPS
 BOARD_USES_GPSSHIM := true
 BOARD_GPS_NEEDS_XTRA := true
 BOARD_GPS_LIBRARIES := libloc
-#BOARD_USES_QCOM_GPS := true
-#BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := swift
-#AMSS version to use for GPS
-#BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
-### enable fm radio
-BOARD_HAVE_FM_RADIO := true
-BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
-BOARD_USE_BROADCOM_FM_VOLUME_HACK := true
-### enable bluetouth
+
+# Audio & Bluetooth
+TARGET_PROVIDES_LIBAUDIO := true
+BOARD_USES_AUDIO_LEGACY := false
+BOARD_COMBO_DEVICE_SUPPORTED := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-### ext4
-TARGET_USERIMAGES_USE_EXT4 := false
+
